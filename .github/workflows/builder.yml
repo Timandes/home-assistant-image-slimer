@@ -78,7 +78,7 @@ jobs:
 
   build_base:
     name: Build ${{ matrix.arch }} base core image
-    if: github.repository_owner == 'home-assistant'
+    if: github.repository_owner == 'timandes'
     needs: init
     runs-on: ${{ matrix.os }}
     permissions:
@@ -247,7 +247,7 @@ jobs:
 
   build_machine:
     name: Build ${{ matrix.machine }} machine core image
-    if: github.repository_owner == 'home-assistant'
+    if: github.repository_owner == 'timandes'
     needs: ["init", "build_base"]
     runs-on: ubuntu-latest
     permissions:
@@ -306,7 +306,7 @@ jobs:
   publish_ha:
     name: Publish version files
     environment: ${{ needs.init.outputs.channel }}
-    if: github.repository_owner == 'home-assistant'
+    if: github.repository_owner == 'timandes'
     needs: ["init", "build_machine"]
     runs-on: ubuntu-latest
     steps:
@@ -342,7 +342,7 @@ jobs:
   publish_container:
     name: Publish meta container for ${{ matrix.registry }}
     environment: ${{ needs.init.outputs.channel }}
-    if: github.repository_owner == 'home-assistant'
+    if: github.repository_owner == 'timandes'
     needs: ["init", "build_base"]
     runs-on: ubuntu-latest
     permissions:
@@ -471,7 +471,7 @@ jobs:
     permissions:
       contents: read
       id-token: write
-    if: github.repository_owner == 'home-assistant' && needs.init.outputs.publish == 'true'
+    if: github.repository_owner == 'timandes' && needs.init.outputs.publish == 'true'
     steps:
       - name: Checkout the repository
         uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
@@ -513,7 +513,7 @@ jobs:
       attestations: write
       id-token: write
     needs: ["init"]
-    if: github.repository_owner == 'home-assistant'
+    if: github.repository_owner == 'timandes'
     env:
       HASSFEST_IMAGE_NAME: ghcr.io/home-assistant/hassfest
       HASSFEST_IMAGE_TAG: ghcr.io/home-assistant/hassfest:${{ needs.init.outputs.version }}
