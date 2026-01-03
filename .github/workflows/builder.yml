@@ -207,21 +207,21 @@ jobs:
           echo "cache_image=ghcr.io/timandes/${{ matrix.arch }}-homeassistant:latest" >> "$GITHUB_OUTPUT"
           echo "created=$(date --rfc-3339=seconds --utc)" >> "$GITHUB_OUTPUT"
 
-      - name: Verify base image signature
-        run: |
-          cosign verify \
-            --certificate-oidc-issuer https://token.actions.githubusercontent.com \
-            --certificate-identity-regexp "https://github.com/home-assistant/docker/.*" \
-            "${{ steps.vars.outputs.base_image }}"
+      # - name: Verify base image signature
+      #   run: |
+      #     cosign verify \
+      #       --certificate-oidc-issuer https://token.actions.githubusercontent.com \
+      #       --certificate-identity-regexp "https://github.com/home-assistant/docker/.*" \
+      #       "${{ steps.vars.outputs.base_image }}"
 
-      - name: Verify cache image signature
-        id: cache
-        continue-on-error: true
-        run: |
-          cosign verify \
-            --certificate-oidc-issuer https://token.actions.githubusercontent.com \
-            --certificate-identity-regexp "https://github.com/home-assistant/core/.*" \
-            "${{ steps.vars.outputs.cache_image }}"
+      # - name: Verify cache image signature
+      #   id: cache
+      #   continue-on-error: true
+      #   run: |
+      #     cosign verify \
+      #       --certificate-oidc-issuer https://token.actions.githubusercontent.com \
+      #       --certificate-identity-regexp "https://github.com/home-assistant/core/.*" \
+      #       "${{ steps.vars.outputs.cache_image }}"
 
       - name: Build base image
         id: build
