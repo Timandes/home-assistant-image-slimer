@@ -21,7 +21,7 @@ env:
 jobs:
   init:
     name: Initialize build
-    if: github.repository_owner == 'home-assistant'
+    if: github.repository_owner == 'timandes'
     runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.version.outputs.version }}
