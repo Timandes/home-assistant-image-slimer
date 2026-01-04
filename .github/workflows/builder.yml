@@ -168,15 +168,15 @@ jobs:
             sed -i "s|home-assistant-intents==.*||" requirements_all.txt
           fi
 
-      # - name: Download translations
-      #   uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7.0.0
-      #   with:
-      #     name: translations
+      - name: Download translations
+        uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7.0.0
+        with:
+          name: translations
 
-      # - name: Extract translations
-      #   run: |
-      #     tar xvf translations.tar.gz
-      #     rm translations.tar.gz
+      - name: Extract translations
+        run: |
+          tar xvf translations.tar.gz
+          rm translations.tar.gz
 
       - name: Write meta info file
         shell: bash
