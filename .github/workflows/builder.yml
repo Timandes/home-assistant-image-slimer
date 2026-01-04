@@ -65,14 +65,9 @@ jobs:
       #   env:
       #     LOKALISE_TOKEN: ${{ secrets.LOKALISE_TOKEN }}
 
-      # - name: Archive translations
-      #   shell: bash
-      #   run: find ./homeassistant/components/*/translations -name "*.json" | tar zcvf translations.tar.gz -T -
-
-      - name: Download translations from origin
-        run: |
-          curl -L -o translations.tar.gz \
-            "https://github.com/home-assistant/core/actions/runs/20686600351/artifacts/5015865911"
+      - name: Archive translations
+        shell: bash
+        run: find ./homeassistant/components/*/translations -name "*.json" | tar zcvf translations.tar.gz -T -
 
       - name: Upload translations
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
